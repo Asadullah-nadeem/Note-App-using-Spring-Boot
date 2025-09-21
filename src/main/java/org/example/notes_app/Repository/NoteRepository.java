@@ -32,20 +32,20 @@ public class NoteRepository {
     }
 
     public List<Note> findTag(String tag) {
-        return e.createQuery("SELECT n from Note n where n.tags like :tag", Note.class)
+        return e.createQuery("SELECT n FROM Note n WHERE n.tags LIKE :tag", Note.class)
                 .setParameter("tag", "%" + tag + "%")
                 .getResultList();
     }
 
     public List<Note> findImportance(boolean important) {
-        return e.createQuery("SELECT n FROM Note n where n.important = :important", Note.class)
+        return e.createQuery("SELECT n FROM Note n WHERE n.important = :important", Note.class)
                 .setParameter("important", important)
                 .getResultList();
     }
 
     public List<Note> trending()
     {
-        return e.createQuery("select n from Note n order by n.likes desc ", Note.class)
+        return e.createQuery("SELECT n FROM Note n order by n.likes DESC ", Note.class)
                 .getResultList();
     }
 }
